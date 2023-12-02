@@ -8,26 +8,66 @@ import DashboardIcon from '@rsuite/icons/Dashboard';
 import GroupIcon from '@rsuite/icons/legacy/Group';
 import MagicIcon from '@rsuite/icons/legacy/Magic';
 import 'rsuite/styles/index.less';
+import axios from "axios";
 
+let _this: any;
 export default class Start extends React.Component {
-    constructor(props:any) {
-      super(props);      
-    }
-    state = {
-      expand:true
+  constructor(props: any) {
+    super(props);
+    _this = this;
+
+    let token = this.getCookie("token");
+
+    let config = {
+      method: "post",
+      maxBodyLength: Infinity,
+      url: "http://localhost:8000/api/user/getall",
+      headers: {
+        Authorization: "Bearer " + token,
+      },
     };
-  
-    render() {
-      return (
-        <div className="show-container h-100 w-100">  
+
+    axios
+      .request(config)
+      .then((response) => {
+        debugger;
+        console.log(JSON.stringify(response.data));
+      })
+      .catch((error) => {
+        debugger;
+        console.log(error);
+      });
+  }
+  state = {
+    expand: true,
+  };
+
+  getCookie(name: string) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(";");
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == " ") c = c.substring(1, c.length);
+      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+  }
+
+  render() {
+    return (
+      <div className="show-container h-100 w-100">
         <Container>
-            <Sidebar style={{borderLeft: '1px solid #ffffff'}}>
+          <Sidebar style={{ borderLeft: "1px solid #ffffff" }}>
             <Sidenav.Header>
-              <div className='logo-title'>
+              <div className="logo-title">
                 <span> عنوان</span>
               </div>
             </Sidenav.Header>
-            <Sidenav expanded={this.state.expand} defaultOpenKeys={['3']} appearance="subtle">
+            <Sidenav
+              expanded={this.state.expand}
+              defaultOpenKeys={["3"]}
+              appearance="subtle"
+            >
               <Sidenav.Body>
                 <Nav>
                   <Nav.Item eventKey="1" active icon={<DashboardIcon />}>
@@ -66,18 +106,18 @@ export default class Start extends React.Component {
               </Sidenav.Body>
             </Sidenav>
             {/* <NavToggle expand={expand} onChange={() => setExpand(!expand)} /> */}
-            </Sidebar>
-            <Container>
-                <Header>
-                  <div className='header'>
-                    <div className='logout-panel'></div>
-                  </div>
-                </Header>
-                <Content>Content</Content>
-                <Footer className='footer'>Copyright © 2010-2023</Footer>
-            </Container>
+          </Sidebar>
+          <Container>
+            <Header>
+              <div className="header">
+                <div className="logout-panel"></div>
+              </div>
+            </Header>
+            <Content>Content</Content>
+            <Footer className="footer">Copyright © 2010-2023</Footer>
+          </Container>
         </Container>
-    </div>
+      </div>
     );
-    }
   }
+}

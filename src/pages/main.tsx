@@ -10,17 +10,17 @@ import { CustomProvider } from 'rsuite';
 
 function Main() {
     return (
-        <CustomProvider theme="dark">
-            <HashRouter>
-                <Routes>
-                    <Route path="/" element={<Login />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/start" element={<Start />} />
-                </Routes>
-            </HashRouter> 
-        </CustomProvider>     
+    <CustomProvider theme="dark">
+        <HashRouter>
+            <Routes>
+                <Route path="/" element={<Login />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/start" element={<Start />} />
+            </Routes>
+        </HashRouter> 
+    </CustomProvider>     
     );
 }
 export default Main;

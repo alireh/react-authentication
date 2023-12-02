@@ -1,8 +1,15 @@
 import * as React from 'react';
-
-function About() {
-    return (
+export default class About extends React.Component {
+    constructor(props:any) {
+      super(props);      
+    }
+    state = {
+      expand:true
+    };
+  
+    render() {
+      return (
         <div>{'about'}</div>
     );
+    }
 }
-export default About;

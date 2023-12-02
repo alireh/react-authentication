@@ -9,14 +9,14 @@ module.exports = {
     filename: "bundle.js",
   },
   devServer: {
-    port: 9090,
+    port: 8000,
     // Send API requests on localhost to API server get around CORS.
     proxy: {
       "/": {
         target: {
           host: "0.0.0.0",
           protocol: "http:",
-          port: 8080,
+          port: 8081,
         },
       },
     },
