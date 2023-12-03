@@ -1,14 +1,29 @@
 import * as React from 'react';
-import { Container, Header, Content, Sidenav, Footer, Sidebar, Navbar, Nav } from 'rsuite';
-import CogIcon from '@rsuite/icons/legacy/Cog';
-import AngleLeftIcon from '@rsuite/icons/legacy/AngleLeft';
-import AngleRightIcon from '@rsuite/icons/legacy/AngleRight';
-import GearCircleIcon from '@rsuite/icons/legacy/GearCircle';
-import DashboardIcon from '@rsuite/icons/Dashboard';
-import GroupIcon from '@rsuite/icons/legacy/Group';
-import MagicIcon from '@rsuite/icons/legacy/Magic';
-import 'rsuite/styles/index.less';
+import {
+  Container,
+  Header,
+  Content,
+  Sidenav,
+  Footer,
+  Sidebar,
+  Navbar,
+  Nav,
+  Button,
+} from "rsuite";
+import CogIcon from "@rsuite/icons/legacy/Cog";
+import AngleLeftIcon from "@rsuite/icons/legacy/AngleLeft";
+import AngleRightIcon from "@rsuite/icons/legacy/AngleRight";
+import GearCircleIcon from "@rsuite/icons/legacy/GearCircle";
+import DashboardIcon from "@rsuite/icons/Dashboard";
+import GroupIcon from "@rsuite/icons/legacy/Group";
+import MagicIcon from "@rsuite/icons/legacy/Magic";
+import "rsuite/styles/index.less";
 import axios from "axios";
+import { getCookie, setCookie } from "../utils/util";
+
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 let _this: any;
 export default class Start extends React.Component {
@@ -16,7 +31,7 @@ export default class Start extends React.Component {
     super(props);
     _this = this;
 
-    let token = this.getCookie("token");
+    let token = getCookie("token");
 
     let config = {
       method: "post",
@@ -38,20 +53,37 @@ export default class Start extends React.Component {
         console.log(error);
       });
   }
+
   state = {
     expand: true,
+    isShowProfilePanel: false,
+    userFullname: getCookie("fullname"),
   };
 
-  getCookie(name: string) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(";");
-    for (var i = 0; i < ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) == " ") c = c.substring(1, c.length);
-      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-    }
-    return null;
-  }
+  componentDidMount = () => {
+    document.body.addEventListener("click", (e) => this.bodyClick(e));
+  };
+  componentWillUnmount = () => {
+    document.body.removeEventListener("click", (e) => this.bodyClick(e));
+  };
+
+  bodyClick = (e: any) => {
+    // debugger;
+    // if (
+    //   e.target.attributes["name"] &&
+    //   e.target.attributes["name"].value != "profile-arrow"
+    // )
+    // this.setState({ isShowProfilePanel: false });
+  };
+
+  logoutClick = () => {
+    setCookie("token", "", 1);
+    window.location.href = "/#/login";
+  };
+
+  profileIconMouseUp = (e: any) => {
+    this.setState({ isShowProfilePanel: !this.state.isShowProfilePanel });
+  };
 
   render() {
     return (
@@ -110,10 +142,36 @@ export default class Start extends React.Component {
           <Container>
             <Header>
               <div className="header">
-                <div className="logout-panel"></div>
+                <div className="logout-panel relative">
+                  <Navbar appearance="inverse">
+                    <Navbar.Brand>
+                      {/* <Button
+                          onClick={this.logoutClick}
+                          style={{
+                            width: "7em",
+                            height: "3em",
+                          }}
+                        >
+                          خروج
+                        </Button> */}
+                    </Navbar.Brand>
+                    <FontAwesomeIcon
+                      icon={faChevronDown}
+                      name="profile-arrow"
+                      className="profile-icon"
+                      onMouseUp={this.profileIconMouseUp}
+                    />
+                    <div className="profile-panel">
+                      {this.state.userFullname}
+                    </div>
+                    {this.state.isShowProfilePanel && (
+                      <div className="logout-popup-panel"></div>
+                    )}
+                  </Navbar>
+                </div>
               </div>
             </Header>
-            <Content>Content</Content>
+            <Content></Content>
             <Footer className="footer">Copyright © 2010-2023</Footer>
           </Container>
         </Container>

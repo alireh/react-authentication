@@ -80,8 +80,9 @@ export default class Login extends React.Component {
             errorMessage: "",
             isDisplayLoading: false,
           });
+          document.cookie = `token=${response.data.account.token}`;
+          document.cookie = `fullname=${response.data.account.firstname} ${response.data.account.lastname} `;
           window.location.href = "/#/start";
-          document.cookie = `token=${response.data.token}`;
         } else {
           _this.setState({
             errorMessage: "نام کاربری یا رمز عبور اشتباه است",
@@ -100,14 +101,7 @@ export default class Login extends React.Component {
   render() {
     return (
       <div className="show-fake-browser login-page relative">
-        <Container theme="dark">
-          {/* <Header>
-            <Navbar appearance="inverse">
-              <Navbar.Brand>
-                
-              </Navbar.Brand>
-            </Navbar>
-          </Header> */}
+        <Container theme="dark">         
           <Content>
             <FlexboxGrid
               justify="center"
