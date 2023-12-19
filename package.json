@@ -47,6 +47,7 @@
     "axios": "^1.6.2",
     "prop-types": "^15.8.1",
     "react-private-route": "^1.1.2",
-    "rsuite": "^5.45.0"
+    "rsuite": "^5.45.0",
+    "rsuite-table": "^5.18.2"
   }
 }

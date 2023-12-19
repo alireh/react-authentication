@@ -14,11 +14,14 @@ function Main() {
     <CustomProvider theme="dark">
       <HashRouter>
         <Routes>
-          <Route path="/" element={
-            <PrivateRoute>
-              <Start />
-            </PrivateRoute>
-          } />
+          <Route
+            path="/"
+            element={
+              <PrivateRoute>
+                <Start />
+              </PrivateRoute>
+            }
+          />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route
