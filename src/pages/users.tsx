@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Table, Column, HeaderCell, Cell } from "rsuite-table";
 import "rsuite-table/lib/less/index.less";
 
 export default class Users extends React.Component {
@@ -17,22 +16,23 @@ export default class Users extends React.Component {
 
   render() {
     return (
-      <div className="users-table rtl">
-        <Table data={this.state.dataList} width={400}>
-          <Column width={100} resizable>
-            <HeaderCell>شناسه</HeaderCell>
-            <Cell dataKey="id" />
-          </Column>
-          <Column width={200} resizable>
-            <HeaderCell>نام</HeaderCell>
-            <Cell dataKey="name" />
-          </Column>
-          <Column width={100} resizable>
-            <HeaderCell>سن</HeaderCell>
-            <Cell dataKey="age" />
-          </Column>
-        </Table>
-      </div>
+      <div></div>
+      // <div className="users-table rtl">
+      //   <table width={400}>
+      //     <td width={100} resizable>
+      //       <HeaderCell>شناسه</HeaderCell>
+      //       <Cell dataKey="id" />
+      //     </td>
+      //     <td width={200} resizable>
+      //       <HeaderCell>نام</HeaderCell>
+      //       <Cell dataKey="name" />
+      //     </td>
+      //     <td width={100} resizable>
+      //       <HeaderCell>سن</HeaderCell>
+      //       <Cell dataKey="age" />
+      //     </td>
+      //   </table>
+      // </div>
     );
   }
 }

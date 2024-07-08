@@ -1,20 +1,6 @@
-import * as React from 'react';
-import { Input, Loader } from "rsuite";
+import * as React from "react";
 import axios from "axios";
-import "rsuite/styles/index.less";
-
-import {
-  Container,
-  Header,
-  Content,
-  Footer,
-  Form,
-  ButtonToolbar,
-  Button,
-  Navbar,
-  Panel,
-  FlexboxGrid,
-} from "rsuite";
+import "../styles/login.sass";
 
 let _this: any;
 export default class Login extends React.Component {
@@ -98,74 +84,51 @@ export default class Login extends React.Component {
       });
   };
 
+  goToRegisterPage = () => {
+    location.href = "/#/register1";
+  };
+
   render() {
     return (
-      <div className="show-fake-browser login-page relative">
-        <Container theme="dark">         
-          <Content>
-            <FlexboxGrid
-              justify="center"
-              className={
-                this.state.isDisplayLoading ? "login-form blur" : "login-form"
-              }
-            >
-              <FlexboxGrid.Item colspan={12}>
-                <Panel header={<h3>ورود به سامانه</h3>} bordered>
-                  <Form fluid>
-                    <Form.Group>
-                      <Form.ControlLabel>نام کاربری</Form.ControlLabel>
-                      <Form.Control
-                        onKeyUp={this.inputsKeyUp}
-                        name="email"
-                        value={this.state.email}
-                        onChange={this.emailChange}
-                      />
-                    </Form.Group>
-                    <Form.Group>
-                      <Form.ControlLabel>رمز عبور</Form.ControlLabel>
-                      <Form.Control
-                        onKeyUp={this.inputsKeyUp}
-                        name="password"
-                        type="password"
-                        autoComplete="off"
-                        onChange={this.passwordChange}
-                      />
-                    </Form.Group>
-                    <Form.Group>
-                      <ButtonToolbar>
-                        <Button
-                          appearance="primary"
-                          disabled={!this.state.isEnabledLoginButton}
-                          onClick={this.clickInputButton}
-                        >
-                          {/* <a href="/#/start" style={{color:'white'}}>ورود</a> */}
-                          ورود
-                        </Button>
-                        <Button appearance="secondary">
-                          <a href="/#/register">ثبت نام</a>
-                        </Button>
-                      </ButtonToolbar>
-                    </Form.Group>
-                    <Form.Group>
-                      <ButtonToolbar>
-                        <Button appearance="link">فراموشی رمز عبور؟</Button>
-                      </ButtonToolbar>
-                    </Form.Group>
-                    <span className="warning-msg">
-                      {this.state.errorMessage}
-                    </span>
-                  </Form>
-                </Panel>
-              </FlexboxGrid.Item>
-              {this.state.isDisplayLoading && (
-                <div className="absolute loading">
-                  <Loader size="lg" content="" />
-                </div>
-              )}
-            </FlexboxGrid>
-          </Content>
-          <Footer></Footer>
-        </Container>
+      <div className="login1-container">
+        <div className="login1">
+          <div className="login1-container">
+            <h1>ورود</h1>
+            <input type="email" placeholder="ایمیل" />
+            <input type="password" placeholder="رمز عبور" />
+            <br />
+            <input type="checkbox" />
+            <span>ما را با خاطر داشته باش</span>
+            <a href="#">فراموشی رمز عبور</a>
+            <button>ورود</button>
+            <ul>
+              <li>
+                <i className="fab fa-facebook-f fa-2x"></i>
+              </li>
+              <li>
+                <i className="fab fa-twitter fa-2x"></i>
+              </li>
+              <li>
+                <i className="fab fa-github fa-2x"></i>
+              </li>
+              <li>
+                <i className="fab fa-linkedin-in fa-2x"></i>
+              </li>
+            </ul>
+            <div className="clearfix"></div>
+            <span className="copyright">&copy;2019</span>
+          </div>
+        </div>
+        <div className="welcome1">
+          <div className="welcome1-container">
+            <i className="fas fa-user-plus fa-5x"></i>
+            <h2>خوش آمدید</h2>
+            <p>با ما خریدی به یاد ماندنی را ثبت کنید</p>
+            <button onClick={this.goToRegisterPage}>
+              ثبت نام <i className="fas fa-arrow-circle-right"></i>
+            </button>
+          </div>
+        </div>
       </div>
     );
   }

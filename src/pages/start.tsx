@@ -1,27 +1,13 @@
-import * as React from 'react';
-import {
-  Container,
-  Header,
-  Content,
-  Sidenav,
-  Footer,
-  Sidebar,
-  Navbar,
-  Nav,
-  Button,
-} from "rsuite";
-import "rsuite/styles/index.less";
+import * as React from "react";
 import axios from "axios";
 import { getCookie, setCookie } from "../utils/util";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import "@fortawesome/fontawesome-svg-core/styles.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import Users from "./users";
-import Sitemaps from "./sitemaps";
-import Contact from "./contact";
-import Courses from "./courses";
-import About from "./about";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./../styles/main.css";
+import "./../styles/fluid-header.less";
+import "./../styles/special-offer.less";
 
 interface StartState {
   activeKey: string;
@@ -97,130 +83,169 @@ export default class Start extends React.Component<StartProps, StartState> {
     this.setState({ activeKey: e });
   };
 
-  renderBody(param: any) {
-    switch (param) {
-      case "sitemaps":
-        return <Sitemaps />;
-      case "contact":
-        return <Contact />;
-      case "courses":
-        return <Courses />;
-      case "users":
-        return <Users />;
-      case "about":
-        return <About />;
-      default:
-        return "";
-    }
-  }
-
   render() {
     return (
-      <div className="show-container h-100 w-100 rtl">
-        <Container>
-          <Sidebar style={{ borderLeft: "1px solid #ffffff" }}>
-            <Sidenav.Header>
-              <div className="logo-title">
-                <span> عنوان</span>
-              </div>
-            </Sidenav.Header>
-            <Sidenav
-              expanded={this.state.expand}
-              defaultOpenKeys={["3"]}
-              appearance="subtle"
-            >
-              <Sidenav.Body>
-                <Nav
-                  onSelect={this.changeActiveKey}
-                  activeKey={this.state.activeKey}
-                >
-                  <Nav.Item eventKey="home" key="1">
-                    صفحه اصلی
-                  </Nav.Item>
-                  <Nav.Item eventKey="about" key="2">
-                    درباره ما
-                  </Nav.Item>
-                  <Nav.Menu
-                    eventKey="3"
-                    trigger="hover"
-                    title="آموزش"
-                    placement="rightStart"
-                  >
-                    <Nav.Item eventKey="users" key="3-1">
-                      لیست کاربران
-                    </Nav.Item>
-                    <Nav.Item eventKey="courses" key="3-2">
-                      لیست دوره ها
-                    </Nav.Item>
-                    <Nav.Item eventKey="sitemaps" key="3-3">
-                      نقشه سایت
-                    </Nav.Item>
-                    <Nav.Item eventKey="contact" key="3-4">
-                      تماس با ما
-                    </Nav.Item>
-                  </Nav.Menu>
-                  <Nav.Menu
-                    eventKey="4"
-                    trigger="hover"
-                    title="تنظیمات"
-                    placement="rightStart"
-                  >
-                    <Nav.Item eventKey="4-1">Applications</Nav.Item>
-                    <Nav.Item eventKey="4-2">Websites</Nav.Item>
-                    <Nav.Item eventKey="4-3">Channels</Nav.Item>
-                    <Nav.Item eventKey="4-4">Tags</Nav.Item>
-                    <Nav.Item eventKey="4-5">Versions</Nav.Item>
-                  </Nav.Menu>
-                </Nav>
-              </Sidenav.Body>
-            </Sidenav>
-            {/* <NavToggle expand={expand} onChange={() => setExpand(!expand)} /> */}
-          </Sidebar>
-          <Container>
-            <Header>
-              <div className="header">
-                <div className="logout-panel relative">
-                  <Navbar appearance="inverse">
-                    <Navbar.Brand>
-                      {/* <Button
-                          onClick={this.logoutClick}
-                          style={{
-                            width: "7em",
-                            height: "3em",
-                          }}
-                        >
-                          خروج
-                        </Button> */}
-                    </Navbar.Brand>
-                    <FontAwesomeIcon
-                      icon={faChevronDown}
-                      name="profile-arrow"
-                      className="profile-icon"
-                      onMouseUp={this.profileIconMouseUp}
+      <>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <a className="navbar-brand" href="#">
+            فروشگاه اینترنتی چوبا
+          </a>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav ml-auto">
+              <li className="nav-item active">
+                <a className="nav-link" href="#">
+                  صفحه اصلی <span className="sr-only">(current)</span>
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#">
+                  ویژگی‌ها
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#">
+                  ارتباط با ما
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#">
+                  درباره ما
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <header className="bg-primary text-white text-center py-5 header-div">
+          <div className="container">
+            <h1 className="display-4">Welcome to Our Website</h1>
+            <p className="lead">A great place to put your catchy tagline</p>
+          </div>
+        </header>
+
+        <section id="section-small-boxes" className="order-box">
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-md-2 col-sm-6">
+                <div className="small-box">
+                  <a href="https://www.golsetan.com/same-day-delivery/">
+                    <img
+                      alt="سفارش گل و گیاه برای امروز"
+                      data-src="https://www.golsetan.com/wp-content/uploads/2021/09/same-day-dlower-delivery4h.jpg"
+                      className=" lazyloaded"
+                      src="https://www.golsetan.com/wp-content/uploads/2021/09/same-day-dlower-delivery4h.jpg"
                     />
-                    <div className="profile-panel">
-                      {this.state.userFullname}
-                    </div>
-                    {this.state.isShowProfilePanel && (
-                      <div className="logout-popup-panel">
-                        <span>پروفایل</span>
-                        <span>تغییر کلمه عبور</span>
-                        <span onClick={this.logoutClick}>خروج</span>
-                      </div>
-                    )}
-                  </Navbar>
+                    <h3>ارسال امروز</h3>
+                  </a>
                 </div>
               </div>
-            </Header>
-            <Content>
-              <div className="centeral-div">
-                {this.renderBody(this.state.activeKey)}
+              <div className="col-md-2 col-sm-6">
+                <div className="small-box">
+                  <a href="https://www.golsetan.com/product-category/occasion/birthday/">
+                    <img
+                      alt="خرید گل تولد"
+                      data-src="https://www.golsetan.com/wp-content/uploads/2022/06/Birthday-Flower.jpg"
+                      className=" lazyloaded"
+                      src="https://www.golsetan.com/wp-content/uploads/2022/06/Birthday-Flower.jpg"
+                    />
+                    <h3>گل تولد</h3>
+                  </a>
+                </div>
               </div>
-            </Content>
-            <Footer className="footer">Copyright © 2010-2023</Footer>
-          </Container>
-        </Container>
-      </div>
+              <div className="col-md-2 col-sm-6">
+                <div className="small-box">
+                  <a href="https://www.golsetan.com/product-category/plants/huge-plant/">
+                    <img
+                      alt="خرید گیاهان آپارتمانی سایز بزرگ"
+                      data-src="https://www.golsetan.com/wp-content/uploads/2022/06/Larg-HousePlant.jpg"
+                      className=" lazyloaded"
+                      src="https://www.golsetan.com/wp-content/uploads/2022/06/Larg-HousePlant.jpg"
+                    />
+                    <h3>گیاه سایز بزرگ</h3>
+                  </a>
+                </div>
+              </div>
+              <div className="col-md-2 col-sm-6">
+                <div className="small-box">
+                  <a href="https://www.golsetan.com/product-category/luxury-flower/">
+                    <img
+                      alt="خرید گل و گیاه لاکچری"
+                      data-src="https://www.golsetan.com/wp-content/uploads/2021/01/luxury-flower-and-plant.jpg"
+                      className=" lazyloaded"
+                      src="https://www.golsetan.com/wp-content/uploads/2021/01/luxury-flower-and-plant.jpg"
+                    />
+                    <h3>لاکچری</h3>
+                  </a>
+                </div>
+              </div>
+              <div className="col-md-2 col-sm-6">
+                <div className="small-box">
+                  <a href="https://www.golsetan.com/product-category/plants/">
+                    <img
+                      alt="خرید گیاه آپارتمانی"
+                      data-src="https://www.golsetan.com/wp-content/uploads/2022/06/Indoor-Plant.jpg"
+                      className=" lazyloaded"
+                      src="https://www.golsetan.com/wp-content/uploads/2022/06/Indoor-Plant.jpg"
+                    />
+                    <h3>گیاه آپارتمانی</h3>
+                  </a>
+                </div>
+              </div>
+              <div className="col-md-2 col-sm-6">
+                <div className="small-box">
+                  <a href="https://www.golsetan.com/product-category/flowers/rose/">
+                    <img
+                      alt="خرید گل رز"
+                      data-src="https://www.golsetan.com/wp-content/uploads/2021/01/rose-flowers.jpg"
+                      className=" lazyloaded"
+                      src="https://www.golsetan.com/wp-content/uploads/2021/01/rose-flowers.jpg"
+                    />
+                    <h3>گل رز</h3>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-5">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-8 main-div">
+                <h2>Main Content</h2>
+                <p>
+                  This is the main content area. You can add more content here
+                  as per your needs.
+                </p>
+              </div>
+              <div className="col-md-4">
+                <h2>Sidebar</h2>
+                <p>
+                  This is the sidebar area. You can add additional information
+                  or links here.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <footer className="bg-light text-center py-4">
+          <div className="container">
+            <p className="m-0">© 2024 Your Website. All Rights Reserved.</p>
+          </div>
+        </footer>
+      </>
     );
   }
 }

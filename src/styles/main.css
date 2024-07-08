@@ -1,0 +1,11 @@
+.main-div{
+    height: 25em;
+}
+.rtl{direction:rtl!important;}
+.ltr{direction:ltr!important;}
+
+.header-div{
+    object-fit: fill;
+    height: 25em;
+    background-image: url('./../assets/images/background.jpg');
+}
